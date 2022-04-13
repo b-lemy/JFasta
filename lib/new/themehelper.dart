@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ThemeHelper{
+static Color primaryColor = Color(0xff6758C0);
+static Color accentColor = Color(0xff20aebe);
+static Color shadowColor = Color(0xffa2a6af);
 
+//
   InputDecoration textInputDecoration([String lableText="", String hintText = ""]){
     return InputDecoration(
       labelText: lableText,
@@ -32,10 +36,10 @@ class ThemeHelper{
     Color c1 = Theme.of(context).primaryColor;
     Color c2 = Theme.of(context).accentColor;
     if (color1.isEmpty == false) {
-      c1 = HexColor(color1);
+       c1 = HexColor(color1);
     }
     if (color2.isEmpty == false) {
-      c2 = HexColor(color2);
+       c2 = HexColor(color2);
     }
 
     return BoxDecoration(

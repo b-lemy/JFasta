@@ -4,6 +4,7 @@ import 'package:flutter_app/new/profiilepage.dart';
 import 'package:flutter_app/new/registration.dart';
 
 import 'package:flutter_app/new/themehelper.dart';
+import 'package:flutter_app/quiz/intro.dart';
 
 import 'header.dart';
 import 'forgetpassword.dart';
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SafeArea(
                 child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    padding: EdgeInsets.fromLTRB(20, 1, 20, 10),
                     margin: EdgeInsets.fromLTRB(
                         20, 10, 20, 10), // This will be the login form
                     child: Column(
@@ -125,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  ProfilePage()));
+                                                  quizapp()));
                                     },
                                   ),
                                 ),

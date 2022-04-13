@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/new/registration.dart';
 import 'package:flutter_app/new/splash.dart';
+// import 'package:flutter_app/quiz/screens/home_screen.dart';
 
 import 'forgetpassword.dart';
 import 'forgetpasswverif.dart';
@@ -105,9 +106,9 @@ class _ProfilePageState extends State<ProfilePage>{
                 leading: Icon(Icons.quiz_rounded,size: _drawerIconSize,color: Theme.of(context).accentColor),
                 title: Text('Quiz', style: TextStyle(fontSize: _drawerFontSize, color: Theme.of(context).accentColor),
                 ),
-                // onTap: () {
-                //   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);
-                // },
+                onTap: () {
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => QuizHome()),);
+                },
               ),
               Divider(color: Theme.of(context).primaryColor, height: 1,),
               ListTile(

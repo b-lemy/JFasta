@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:lottie/lottie.dart';
+
+// import 'package:http/http.dart';
+
 
 import 'new/splash.dart';
 
@@ -16,6 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
+      // routes: {
+      //   "/": (context) => LoginPage(),  //This is what you are missing i guess
+      //   "/home": (context) => quizapp(),
+      // },
+      //
       title: 'userView',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey.shade100,
