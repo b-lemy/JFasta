@@ -1,11 +1,11 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/forum/welcomeforum.dart';
-import 'package:flutter_app/new/splash.dart';
 import 'package:flutter_app/quiz/welcomequiz.dart';
  import '../new/profiilepage.dart';
  import '../new/registration.dart';
-import '../new/logn.dart';
+
 
 
 
@@ -17,54 +17,57 @@ class quizapp extends StatefulWidget {
 }
 
 class _quizappState extends State<quizapp> {
-  double _headerHeight = 200;
-  Key _formKey = GlobalKey<FormState>();
   static const IconData quiz = IconData(0xe4ff, fontFamily: 'MaterialIcons');
 
-  int index = 0;
+
+  int indexx = 0 ;
   final screens = [
         welcomequiz(),
         RegistrationPage(),
-         forumintro(),
+        forumintro(),
         ProfilePage(),
   ];
 
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: screens[index],
+    final items = [
+      Icon(Icons.home,size: 30,),
+      Icon(Icons.leaderboard_rounded,size: 30,),
+      Icon(Icons.forum_outlined,size: 30,),
+      Icon(Icons.account_circle,size: 30,),
 
-      bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(
-          indicatorColor: Colors.blue.shade200,
+    ];
+    return Container(
+      color: Colors.redAccent,
+      child: SafeArea(
+        top: false,
+        child: ClipRect(
+          child: Scaffold(
+            extendBody: true,
+            body: screens[indexx],
 
+            bottomNavigationBar: Theme(
+              data: Theme.of(context).copyWith(
+                iconTheme: IconThemeData(color: Colors.white)
+              ),
+              child: CurvedNavigationBar(
+
+                     color: Colors.redAccent,
+                     backgroundColor: Colors.transparent,
+                     height: 60,
+                     index: indexx,
+                     items: items,
+                     animationCurve: Curves.easeInOut,
+                    animationDuration: Duration(milliseconds: 300),
+                   onTap: (indexx) =>setState(() => this.indexx = indexx),
+              ),
+            ),
+
+          ),
         ),
-        child: NavigationBar(
-          backgroundColor: Colors.red,
-          height: 60,
-          selectedIndex: index,
-          animationDuration: Duration(seconds: 3),
-          onDestinationSelected: (index) =>
-          setState(() =>this.index = index),
-          destinations: [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            // NavigationDestination(
-            //     icon: Icon(Icons.notes_sharp),
-            //     label: 'notes',
-            //     selectedIcon: Icon(Icons.email_outlined),
-            // ),
-            NavigationDestination(
-                icon: Icon(Icons.leaderboard_rounded), label: 'leaderboard'),
-            NavigationDestination(
-                icon: Icon(Icons.forum_outlined), label: 'Forum'),
-            NavigationDestination(
-                icon: Icon(Icons.account_circle), label: 'Profile'),
-
-          ],
-        ),
-
       ),
-
     );
   }
 }

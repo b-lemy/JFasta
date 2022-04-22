@@ -229,8 +229,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             GestureDetector(
                               child: FaIcon(
                                 FontAwesomeIcons.googlePlus, size: 35,
-                                  color: Theme.of(context).accentColor
-                                ),
+                                color: HexColor("#EC2D2F"),),
                               onTap: () {
                                 setState(() {
                                   showDialog(
@@ -248,12 +247,12 @@ class _RegistrationPageState extends State<RegistrationPage>{
                                 padding: EdgeInsets.all(0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
-                                  border: Border.all(width: 5,  color: Theme.of(context).accentColor),
-                                    color: Theme.of(context).accentColor
+                                  border: Border.all(width: 5, color: HexColor("#40ABF0")),
+                                  color: HexColor("#40ABF0"),
                                 ),
                                 child: FaIcon(
                                   FontAwesomeIcons.twitter, size: 23,
-                                    color: Colors.white),
+                                  color: HexColor("#FFFFFF"),),
                               ),
                               onTap: () {
                                 setState(() {
@@ -270,7 +269,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             GestureDetector(
                               child: FaIcon(
                                 FontAwesomeIcons.facebook, size: 35,
-                                  color: Theme.of(context).accentColor),
+                                color: HexColor("#3E529C"),),
                               onTap: () {
                                 setState(() {
                                   showDialog(

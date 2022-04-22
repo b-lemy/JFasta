@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
       color: Colors.red,
 
 
-     child:  Lottie.asset("assets/student.json"),
+     child:  Lottie.asset("assets/done.json"),
 
     );
   }
