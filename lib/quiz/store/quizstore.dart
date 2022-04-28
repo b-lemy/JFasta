@@ -9,7 +9,7 @@ import 'package:flutter_app/quiz/store/quiz_history.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizStore {
-  static SharedPreferences prefs;
+  static SharedPreferences? prefs;
   static const String quizHistoryListKey = "QuizHistoryListKey";
   final String categoryJsonFileName = "assets/data/category.json";
   final String quizJsonFileName = "assets/data/quiz.json";
@@ -36,9 +36,9 @@ class QuizStore {
 
   Future<List<QuizHistory>> loadQuizHistoryAsync() async {
     List<QuizHistory> quizHistoryList = [];
-    var ifExists = QuizStore.prefs.containsKey(quizHistoryListKey);
+    var ifExists = QuizStore.prefs!.containsKey(quizHistoryListKey);
     if (ifExists) {
-      var quizHistoryJson = QuizStore.prefs.getString(quizHistoryListKey);
+      var quizHistoryJson = QuizStore.prefs!.getString(quizHistoryListKey);
       if (quizHistoryJson != null) {
         quizHistoryList = await JsonUtil.loadFromJsonStringAsync<QuizHistory>(
             quizHistoryJson, QuizHistory.jsonToObject);
@@ -69,7 +69,7 @@ class QuizStore {
     var historyList = await loadQuizHistoryAsync();
     historyList.add(history);
     var historyJson = jsonEncode(historyList);
-    prefs.setString(quizHistoryListKey, historyJson);
+    prefs!.setString(quizHistoryListKey, historyJson);
   }
 
   Future<Quiz> getQuizByIdAsync(int quizId, int categoryId) async {

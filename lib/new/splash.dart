@@ -6,9 +6,8 @@ import 'package:lottie/lottie.dart';
 
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({Key key,  this.title}) : super(key: key);
+  SplashScreen({Key? key}) : super(key: key);
 
-  final String title;
 
   @override
   _SplashScreenState createState() => _SplashScreenState();

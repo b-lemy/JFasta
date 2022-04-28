@@ -21,21 +21,20 @@ import 'store/quizresults.dart';
 
 
 class QuizScreen extends StatefulWidget {
-  static const routeName = '/quiz';
    Quiz quiz;
-  QuizScreen(this.quiz, {Key key}) : super(key: key);
+  QuizScreen(this.quiz, {Key? key}) : super(key: key);
 
   @override
   _QuizScreenState createState() => _QuizScreenState(quiz);
 }
 
 class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
-   QuizEngine engine;
-   QuizStore store;
-   Quiz quiz;
-  Question question;
-  Timer progressTimer;
-  AppLifecycleState state;
+  late QuizEngine engine;
+  late QuizStore store;
+  late Quiz quiz;
+  Question? question;
+  Timer? progressTimer;
+  AppLifecycleState? state;
 
   int _remainingTime = 0;
   Map<int, OptionSelection> _optionSerial = {};
@@ -49,7 +48,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   void initState() {
     engine.start();
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
@@ -60,11 +59,11 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    if (progressTimer != null && progressTimer.isActive) {
-      progressTimer.cancel();
+    if (progressTimer != null && progressTimer!.isActive) {
+      progressTimer!.cancel();
     }
     engine.stop();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
@@ -121,13 +120,13 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
       decoration: ThemeHelper.roundBoxDeco(),
       child: Column(
         children: List<Option>.from(question?.options ?? []).map((e) {
-          int optionIndex = question.options.indexOf(e);
+          int optionIndex = question!.options.indexOf(e);
           var optWidget = GestureDetector(
             onTap: () {
               setState(() {
-                engine.updateAnswer(quiz.questions.indexOf(question), optionIndex);
+                engine.updateAnswer(quiz.questions.indexOf(question!), optionIndex);
                 for (int i = 0; i < _optionSerial.length; i++) {
-                  _optionSerial[i].isSelected = false;
+                  _optionSerial[i]!.isSelected = false;
                 }
                 _optionSerial.update(optionIndex, (value) {
                   value.isSelected = true;
@@ -137,9 +136,9 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
             },
             child: QuestionOption(
               optionIndex,
-              _optionSerial[optionIndex].optionText,
+              _optionSerial[optionIndex]!.optionText,
               e.text,
-              isSelected: _optionSerial[optionIndex].isSelected,
+              isSelected: _optionSerial[optionIndex]!.isSelected,
             ),
           );
           return optWidget;
@@ -178,8 +177,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
           onPressed: () {
             setState(() {
               engine.stop();
-              if (progressTimer != null && progressTimer.isActive) {
-                progressTimer.cancel();
+              if (progressTimer != null && progressTimer!.isActive) {
+                progressTimer!.cancel();
               }
             });
             Navigator.pop(context);
@@ -209,9 +208,9 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
 
   void onNextQuestion(Question question) {
     setState(() {
-      if (progressTimer != null && progressTimer.isActive) {
+      if (progressTimer != null && progressTimer!.isActive) {
         _remainingTime = 0;
-        progressTimer.cancel();
+        progressTimer!.cancel();
       }
 
       this.question = question;
@@ -245,7 +244,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
         _remainingTime = 0;
       });
     }
-    progressTimer.cancel();
+    progressTimer!.cancel();
     store.getCategoryAsync(quiz.categoryId).then((category) {
       store
           .saveQuizHistory(QuizHistory(quiz.id, quiz.title, category.id,
@@ -259,6 +258,6 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
 
   void onStop(Quiz quiz) {
     _remainingTime = 0;
-    progressTimer.cancel();
+    progressTimer!.cancel();
   }
 }

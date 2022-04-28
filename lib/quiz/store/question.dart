@@ -1,10 +1,10 @@
 import 'option.dart';
 
 class Question {
-   String text;
-   int duration;
-   bool shuffleOptions;
-   List<Option> options;
+   late String text;
+   late int duration;
+   late bool shuffleOptions;
+   late List<Option> options;
 
   Question(
       this.text,

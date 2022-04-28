@@ -10,7 +10,7 @@ class TimeIndicator extends StatelessWidget {
   double borderWidth = 4;
 
   TimeIndicator(this.duration, this.progress, this.onComplete,
-      {Key key, this.width = 300, this.height = 25})
+      {Key? key, this.width = 300, this.height = 25})
       : super(key: key);
 
   @override

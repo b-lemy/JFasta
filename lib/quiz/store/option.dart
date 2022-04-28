@@ -1,6 +1,6 @@
 class Option {
-   String text;
-   bool isCorrect;
+   late String text;
+   late bool isCorrect;
   Option(this.text, this.isCorrect);
 
   Option.fromJson(dynamic json) {

@@ -2,15 +2,15 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/forum/welcomeforum.dart';
+import 'package:flutter_app/leaderboard/leaderwecome.dart';
 import 'package:flutter_app/quiz/welcomequiz.dart';
  import '../new/profiilepage.dart';
- import '../new/registration.dart';
 
 
 
 
 class quizapp extends StatefulWidget {
-  const quizapp({Key key}) : super(key: key);
+  const quizapp({Key? key}) : super(key: key);
 
   @override
   State<quizapp> createState() => _quizappState();
@@ -23,7 +23,7 @@ class _quizappState extends State<quizapp> {
   int indexx = 0 ;
   final screens = [
         welcomequiz(),
-        RegistrationPage(),
+        leader(),
         forumintro(),
         ProfilePage(),
   ];
@@ -40,7 +40,7 @@ class _quizappState extends State<quizapp> {
 
     ];
     return Container(
-      color: Colors.redAccent,
+      color: Colors.red,
       child: SafeArea(
         top: false,
         child: ClipRect(

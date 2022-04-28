@@ -1,13 +1,13 @@
 import 'question.dart';
 
 class Quiz {
-   int id;
-   String title;
-   String description;
-   bool shuffleQuestions;
-  String imagePath;
-   int categoryId;
-   List<Question> questions;
+  late int id;
+   late String title;
+   late String description;
+   late bool shuffleQuestions;
+  late String imagePath;
+   late int categoryId;
+   late List<Question> questions;
 
   Quiz(this.id, this.title, this.description, this.shuffleQuestions,
       this.imagePath, this.categoryId, this.questions);

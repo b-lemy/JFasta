@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'question.dart';
+import 'package:flutter_app/quiz/store/question.dart';
+
 import 'quiz.dart';
 
 
@@ -38,7 +39,7 @@ class QuizEngine {
     takeNewQuestion = true;
 
     Future.doWhile(() async {
-      Question question;
+      Question? question;
       questionStartTime = DateTime.now();
       examStartTime = DateTime.now();
 
@@ -93,7 +94,7 @@ class QuizEngine {
     questionAnswer[questionIndex] = question.options[answer].isCorrect;
   }
 
-  Question _nextQuestion(Quiz quiz, int index) {
+  Question? _nextQuestion(Quiz quiz, int index) {
     while (true) {
       if (takenQuestions.length >= quiz.questions.length) {
         return null;

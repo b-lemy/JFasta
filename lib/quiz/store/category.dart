@@ -1,7 +1,7 @@
 class Category {
-   int id;
-   String name;
-   String imagePath;
+  late int id;
+  late String name;
+  late String imagePath;
 
   Category(this.id, this.name, this.imagePath);
 

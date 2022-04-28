@@ -6,19 +6,20 @@ class DiscoButton extends StatelessWidget {
   final OnButtonPressed onPressed;
   final Widget child;
   final Color buttonColor;
-  final PaintingStyle paintStyle;
+   late final PaintingStyle paintStyle;
   final bool isActive;
   double width;
   double height;
 
   DiscoButton(
-      {Key key,
-        @required this.onPressed,
-        @required this.child,
+      {Key? key,
+        required this.onPressed,
+        required this.child,
         this.width = 150.0,
         this.height = 100.0,
         this.buttonColor = const Color(0xFFE57373),
-        this.isActive = false, this.paintStyle})
+        this.isActive = false,
+        })
       : super(key: key);
 
   @override

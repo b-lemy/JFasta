@@ -117,7 +117,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                                 "Enter your mobile number"),
                             keyboardType: TextInputType.phone,
                             validator: (val) {
-                             if(!(val.isEmpty) && !RegExp(r"^(\d+)*$").hasMatch(val)){
+                             if(!(val!.isEmpty) && !RegExp(r"^(\d+)*$").hasMatch(val)){
                                return "Enter a valid phone number";
                              }
                              return null;
@@ -132,7 +132,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             decoration: ThemeHelper().textInputDecoration(
                                 "Password*", "Enter your password"),
                             validator: (val) {
-                               if (val.isEmpty) {
+                               if (val!.isEmpty) {
                                 return "Please enter your password";
                              }
                               return null;
@@ -147,7 +147,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             decoration: ThemeHelper().textInputDecoration(
                                 "Confirm Password*", "Enter your password"),
                             validator: (val) {
-                               if (val.isEmpty) {
+                               if (val!.isEmpty) {
                                 return "Please enter your password";
                              }
                               return null;
@@ -166,7 +166,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                                         value: checkboxValue,
                                         onChanged: (value) {
                                           setState(() {
-                                            checkboxValue = value;
+                                            checkboxValue = value!;
                                             state.didChange(value);
                                           });
                                         }),
@@ -209,7 +209,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                               ),
                             ),
                             onPressed: () {
-                              if (_formKey.currentState.validate()) {
+                              if (_formKey.currentState!.validate()) {
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                         builder: (context) => ProfilePage()

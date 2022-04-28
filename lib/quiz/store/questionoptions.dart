@@ -7,7 +7,7 @@ class QuestionOption extends StatelessWidget {
   int index;
 
   QuestionOption(this.index, this.optionText, this.text,
-      {Key key, this.isSelected = false})
+      {Key? key, this.isSelected = false})
       : super(key: key);
 
   @override

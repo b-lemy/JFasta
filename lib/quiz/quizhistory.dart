@@ -8,7 +8,7 @@ import 'package:flutter_app/quiz/theme.dart';
 
 class QuizHistoryScreen extends StatefulWidget {
   static const routeName = '/quizHistory';
-  const QuizHistoryScreen({Key key}) : super(key: key);
+  const QuizHistoryScreen({Key? key}) : super(key: key);
 
   @override
   _QuizHistoryScreenState createState() => _QuizHistoryScreenState();
@@ -16,7 +16,7 @@ class QuizHistoryScreen extends StatefulWidget {
 
 class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
   List<QuizHistory> quizHistoryList = [];
-   QuizStore store;
+   late QuizStore store;
 
   @override
   void initState() {
@@ -101,8 +101,8 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
                     onPressed: () {
                       store.getQuizByIdAsync(quiz.quizId, quiz.categoryId).then((value) {
                         if (value != null) {
-                          Navigator.pushReplacementNamed(context, QuizScreen.routeName,
-                              arguments: value);
+                          // Navigator.pushReplacementNamed(context, QuizScreen.routeName,
+                          //     arguments: value);
                         } else {}
                       });
                     },

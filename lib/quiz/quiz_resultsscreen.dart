@@ -7,7 +7,7 @@ import 'package:flutter_app/quiz/store/quizresults.dart';
 class QuizResultScreen extends StatefulWidget {
   static const routeName = '/quizResult';
   QuizResult result;
-  QuizResultScreen(this.result, {Key key}) : super(key: key);
+  QuizResultScreen(this.result, {Key? key}) : super(key: key);
 
   @override
   _QuizResultScreenState createState() => _QuizResultScreenState(this.result);
@@ -62,6 +62,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
             ),
             width: 150,
             height: 50,
+
           ),
           DiscoButton(
             onPressed: () {
