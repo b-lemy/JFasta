@@ -33,7 +33,6 @@ class _RegistrationPageState extends State<RegistrationPage>{
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -170,7 +169,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                                             state.didChange(value);
                                           });
                                         }),
-                                    Text("I accept all terms and conditions.", style: TextStyle(color: Colors.grey),),
+                                    Text("I accept all terms and conditions.", style: TextStyle(color: Colors.black),),
                                   ],
                                 ),
                                 Container(

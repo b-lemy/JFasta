@@ -68,8 +68,8 @@ static Color shadowColor = Color(0xffa2a6af);
         ),
       ),
       minimumSize: MaterialStateProperty.all(Size(50, 50)),
-      backgroundColor: MaterialStateProperty.all(Colors.transparent),
-      shadowColor: MaterialStateProperty.all(Colors.transparent),
+      // backgroundColor: MaterialStateProperty.all(Colors.transparent),
+      // shadowColor: MaterialStateProperty.all(Colors.transparent),
     );
   }
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1062951214693",
+    "project_id": "jfastaquizapp",
+    "storage_bucket": "jfastaquizapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062951214693:android:fc06e54344a55b3a69308c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062951214693-0pe77a63i80vtin3ndkpp0jen9ah3osm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl66wZyy5RETRPm1N12nFHT9vr48iBSjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062951214693-0pe77a63i80vtin3ndkpp0jen9ah3osm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,110 @@
+
+import 'package:path/path.dart';
+import 'package:flutter_app/models/postmodel.dart';
+import 'package:sqflite/sqflite.dart';
+
+class PostDatabase {
+  static final PostDatabase instance = PostDatabase._init();
+
+  static Database? _database;
+
+  PostDatabase._init();
+
+  Future<Database> get  database async {
+    if (_database != null) return _database!;
+
+    _database = await _initDB('post.db');
+    return _database!;
+  }
+
+  Future<Database> _initDB(String filePath) async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, filePath);
+
+    return await openDatabase(path, version: 1, onCreate: _createDB);
+  }
+
+  Future _createDB(Database db, int version) async {
+    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    final textType = 'TEXT NOT NULL';
+
+    await db.execute('''
+CREATE TABLE $tablePosts(
+  ${PostFields.id} $idType,
+   ${PostFields.Title} $textType,
+   ${PostFields.Description} $textType,
+   ${PostFields.Time} $textType,
+
+)
+''');
+  }
+
+  Future<Post> create(Post post) async {
+    final db = await instance.database;
+
+    // final json = post.toJson();
+    // final columns =
+    //     '${PostFields.Title},${PostFields.Description}${PostFields.Time}';
+
+    // final values =
+    //     '${json[PostFields.Title]},${json[PostFields.Description]}${json[PostFields.Time]}';
+
+    // final id = await db
+    //     .rawInsert('INSERT INTO table_name ($columns) VALUES ($values)');
+
+    final id = await db.insert(tablePosts, post.toJson());
+    return post.copy(id: id);
+  }
+
+  Future<Post> readPost(int id) async {
+    final db = await instance.database;
+
+    final maps = await db.query(
+      tablePosts,
+      columns: PostFields.values,
+      where: '${PostFields.id} = ?',
+      whereArgs: [id],
+    );
+
+    if (maps.isNotEmpty) {
+      return Post.fromJson(maps.first);
+    } else {
+      throw Exception('ID $id not found');
+    }
+  }
+
+  Future<List<Post>> readAllPost() async {
+    final db = await instance.database;
+
+    final orderBy = '${PostFields.Time} ASC';
+    final result = await db.query(tablePosts, orderBy: orderBy);
+
+    return result.map((json) => Post.fromJson(json)).toList();
+  }
+
+  Future<int> update(Post post) async {
+    final db = await instance.database;
+
+    return  await db.update(
+      tablePosts,
+      post.toJson(),
+      where: '${PostFields.id} = ?',
+      whereArgs: [post.id],
+    );
+  }
+
+  Future<int> delete(int id) async {
+    final db = await instance.database;
+
+    return await db.delete(
+      tablePosts,
+      where: '${PostFields.id} = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future close() async {
+    final db = await instance.database;
+    db.close();
+  }
+}

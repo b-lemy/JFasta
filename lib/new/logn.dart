@@ -1,10 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/new/profiilepage.dart';
 import 'package:flutter_app/new/registration.dart';
 
 import 'package:flutter_app/new/themehelper.dart';
 import 'package:flutter_app/quiz/intro.dart';
+import 'package:scoped_model/scoped_model.dart';
+
 
 import 'header.dart';
 import 'forgetpassword.dart';
@@ -28,13 +29,12 @@ class _LoginPageState extends State<LoginPage> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 height: _headerHeight,
-                child: HeaderWidget(_headerHeight, true,
+                child: HeaderWidget( _headerHeight, true,
                     Icons.login_rounded), //let's create a common header widget
               ),
               SafeArea(
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: [
                         Text(
-                          'Hello',
+                          'JFasta',
                           style: TextStyle(
                               fontSize: 60, fontWeight: FontWeight.bold),
                         ),
@@ -54,8 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(color: Colors.grey),
                         ),
                         SizedBox(height: 30.0),
-                        Form(
-                            key: _formKey,
+                        Container(
                             child: Column(
                               children: [
                                 Container(
@@ -99,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                                     child: Text(
                                       "Forgot your password?",
                                       style: TextStyle(
-                                        color: Colors.grey,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
@@ -108,27 +107,30 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: ThemeHelper()
                                       .buttonBoxDecoration(context),
                                   child: ElevatedButton(
-                                    style: ThemeHelper().buttonStyle(),
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(40, 10, 40, 10),
-                                      child: Text(
-                                        'Sign In'.toUpperCase(),
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
+                                      style: ThemeHelper().buttonStyle(),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                        child: Text(
+                                          'Sign In'.toUpperCase(),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ),
-                                    ),
-                                    onPressed: () {
-                                      //After successful login we will redirect to profile page. Let's create profile page now
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  quizapp()));
-                                    },
+                                      onPressed: () {
+                                        //After successful login we will redirect to profile page. Let's create profile page now
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    quizapp()));
+                                      },
                                   ),
+                                  
+                                  
+                                  
                                 ),
                                 Container(
                                   margin: EdgeInsets.fromLTRB(10, 20, 10, 20),

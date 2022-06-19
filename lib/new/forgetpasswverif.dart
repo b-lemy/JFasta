@@ -26,7 +26,7 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
     double _headerHeight = 300;
 
     return Scaffold(
-        backgroundColor: Colors.white,
+
         body: SingleChildScrollView(
           child: Column(
             children: [

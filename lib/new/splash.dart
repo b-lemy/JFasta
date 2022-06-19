@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
 
     return Container(
-      color: Colors.red,
+      color: Colors.grey,
 
 
      child:  Lottie.asset("assets/done.json"),

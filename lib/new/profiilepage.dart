@@ -1,6 +1,9 @@
 
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/new/logn.dart';
+import 'package:flutter_app/new/splash.dart';
+import 'package:get/get.dart';
 import 'header.dart';
 
 class ProfilePage extends StatefulWidget{
