@@ -28,8 +28,8 @@
 - Flutter
 - Django
 - My Sql
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+<!-- - Tech 2 - version 2.0
+- Tech 3 - version 3.0 -->
 
 
 ## Features
@@ -38,8 +38,8 @@ List the ready features here:
 - Forum
 - Gamified Leaderboards
 - Head to Head Quizes
-- Awesome feature 2
-- Awesome feature 3
+<!-- - Awesome feature 2
+- Awesome feature 3 -->
 
 
 ## Screenshots
@@ -61,37 +61,46 @@ Proceed to describe how to install / setup one's local environment / get started
 
 
 ## Usage
-How does one go about using it?
+<!-- How does one go about using it?
 Provide various use cases and code examples here.
 
-`write-your-code-here`
+`write-your-code-here` -->
 
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Project is: _in progress_ 
+<!-- / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why. -->
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
+-Intergration with default secondary sudents api
+-Notes Secton
+-
+<!-- Include areas you believe need improvement / could be improved. Also add TODOs for future development. -->
 
 Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
+- Adding comment in a post
+<!-- - Improvement to be done 2 -->
 
 To do:
-- Feature to be added 1
-- Feature to be added 2
+Financial Support to deploy the Project
+<!-- - Feature to be added 1
+- Feature to be added 2 -->
 
 
 ## Acknowledgements
 Give credit here.
 - This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
+- My Class mate Alex Mtui @xizzMtui on Github
+<!-- - This project was based on [this tutorial](https://www.example.com). -->
 - Many thanks to...
+- Everybody who will Support
 
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+0757983352
+lemabrian1234@gmail.com
+<!-- Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me! -->
 
 
 <!-- Optional -->
