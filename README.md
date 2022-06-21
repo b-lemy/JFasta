@@ -40,6 +40,11 @@ List the ready features here:
 ## Screenshots
 
 ![Example screenshot](./assets/screenshots/1.png)
+![Example screenshot](./assets/screenshots/2.png)
+![Example screenshot](./assets/screenshots/3.png)
+![Example screenshot](./assets/screenshots/4.png)
+![Example screenshot](./assets/screenshots/5.png)
+![Example screenshot](./assets/screenshots/6.png)
 <!-- ![Example screenshot](./img/screenshot.png) -->
 <!-- If you have screenshots you'd like to share, include them here. -->
 
