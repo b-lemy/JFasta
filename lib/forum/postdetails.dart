@@ -1,12 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/forum/addpost.dart';
+import 'package:intl/intl.dart';
 
-class postdetails extends StatelessWidget {
-  // const postdetails({Key? key, int postId}) : super(key: key);
+import '../db/postdatabase.dart';
+import '../models/postmodel.dart';
 
+
+class postdetails extends StatefulWidget {
+  final int noteId;
+  const postdetails({Key? key , required this.noteId}) : super(key: key);
+
+  @override
+  State<postdetails> createState() => _postdetailsState();
+}
+
+class _postdetailsState extends State<postdetails> {
+  late Note note;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    refreshNote();
+  }
+
+  Future refreshNote() async {
+    setState(() => isLoading = true);
+
+    this.note = await NotesDatabase.instance.readNote(widget.noteId);
+
+    setState(() => isLoading = false);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.red,
         elevation: 0,
@@ -36,7 +65,7 @@ class postdetails extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
-                color: Colors.grey[200],
+                color: Colors.grey,
                 child: IconButton(
                   icon: Icon(
                     Icons.favorite_outline,
@@ -53,7 +82,7 @@ class postdetails extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
-                color: Colors.grey[200],
+                color: Colors.grey,
                 child: IconButton(
                   icon: Icon(
                     Icons.share_outlined,
@@ -65,19 +94,38 @@ class postdetails extends StatelessWidget {
               ),
             ),
           ),
+            IconButton(
+              icon: Icon(Icons.edit_outlined),
+              onPressed: () async {
+                    if (isLoading) return;
+
+                        await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AddTodoButton(note: note),
+                ));
+
+                 refreshNote();
+                }),
+                  IconButton(
+                  icon: Icon(Icons.delete),
+                   onPressed: () async {
+                    await NotesDatabase.instance.delete(widget.noteId);
+
+                  Navigator.of(context).pop();
+                    },
+                  ),
+
         ],
       ),
 
-      body: Container(
-        color: Colors.grey,
-        child: SafeArea(
-          minimum: const EdgeInsets.symmetric(horizontal: 16),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 32),
+      body:
+         isLoading
+         ? Center(child: CircularProgressIndicator())
+        : Padding(
+            padding: const EdgeInsets.all(32),
             child: ListView(
               children: [
-                Text("Mathematics",
-                  // title,
+                Text(
+                  note.title,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 32,
@@ -97,14 +145,14 @@ class postdetails extends StatelessWidget {
                      SizedBox(
                       width: 8,
                     ),
-                    Text("author"
+                    Text("Brian"
                         // '$author, '
                     ),
                     SizedBox(
                       width: 8,
                     ),
-                    Text("date",
-                      // date,
+                    Text(
+                      DateFormat.yMMMd().format(note.createdTime),
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -192,22 +240,9 @@ class postdetails extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                          text: 'A',
-                          style:TextStyle
-                          // GoogleFonts.notoSerif
-                            (
-                              color: Colors.black, fontSize: 32)),
-                      TextSpan(
-                        text:
-                        ' How can i solve this intergration question'
-                            'Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum '
-                            'et Malo (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book'
-                            ' is a treatise on the theory of ethics, very popular during the Renaissance.'
-                            ' The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line '
-                            'in section 1.10.32:                                                   '
-                          "If ∫ sec²(7 – 4x)dx = a tan (7 – 4x) + C, then value of a is:",
-                        style: TextStyle
-                        // GoogleFonts.notoSerif
+                        text:  note.description,
+                       style: TextStyle
+
                           (
                           color: Colors.black,
                           fontSize: 18,
@@ -220,9 +255,13 @@ class postdetails extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+
         ),
-      ),
+
     );
   }
 }
+
+
+
+

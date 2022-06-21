@@ -1,58 +1,54 @@
-import 'dart:convert';
+final String tableNotes = 'notes';
 
-final String tablePosts = 'posts';
+class NoteFields {
+  static final List<String> values = [
+    /// Add all fields
+    id, title, description, time
+  ];
 
-class PostFields {
-  static final List<String> values = [id, Title, Description, Time];
   static final String id = '_id';
-  static final String Title = 'Title';
-  static final String Description = 'Description';
-  static final String Time = 'Time';
+  static final String title = 'title';
+  static final String description = 'description';
+  static final String time = 'time';
 }
 
-class Post {
+class Note {
   final int? id;
-  final String Title;
-  final String Description;
+  final String title;
+  final String description;
   final DateTime createdTime;
-  // final String image;
-  // final String userEmail;
-  // final String userId;
 
-  const Post({
+  const Note({
     this.id,
-    required this.Title,
-    required this.Description,
+    required this.title,
+    required this.description,
     required this.createdTime,
-    // required this.image,
-    // required this.userEmail,
-    // required this.userId,
   });
 
-  Post copy({
+  Note copy({
     int? id,
-    String? Title,
-    String? Description,
+    String? title,
+    String? description,
     DateTime? createdTime,
   }) =>
-      Post(
+      Note(
         id: id ?? this.id,
-        Title: Title ?? this.Title,
-        Description: Description ?? this.Description,
+        title: title ?? this.title,
+        description: description ?? this.description,
         createdTime: createdTime ?? this.createdTime,
       );
 
-  static Post fromJson(Map<String, Object?> json) => Post(
-        id: json[PostFields.id] as int?,
-        Title: json[PostFields.Title] as String,
-        Description: json[PostFields.Description] as String,
-        createdTime: DateTime.parse(json[PostFields.Time] as String), 
-      );
+  static Note fromJson(Map<String, Object?> json) => Note(
+    id: json[NoteFields.id] as int?,
+    title: json[NoteFields.title] as String,
+    description: json[NoteFields.description] as String,
+    createdTime: DateTime.parse(json[NoteFields.time] as String),
+  );
 
   Map<String, Object?> toJson() => {
-        PostFields.id: id,
-        PostFields.Title: Title,
-        PostFields.Description: Description,
-        PostFields.Time: createdTime.toIso8601String(),
-      };
+    NoteFields.id: id,
+    NoteFields.title: title,
+    NoteFields.description: description,
+    NoteFields.time: createdTime.toIso8601String(),
+  };
 }

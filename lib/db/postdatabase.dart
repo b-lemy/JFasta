@@ -3,17 +3,17 @@ import 'package:path/path.dart';
 import 'package:flutter_app/models/postmodel.dart';
 import 'package:sqflite/sqflite.dart';
 
-class PostDatabase {
-  static final PostDatabase instance = PostDatabase._init();
+class NotesDatabase {
+  static final NotesDatabase instance = NotesDatabase._init();
 
   static Database? _database;
 
-  PostDatabase._init();
+  NotesDatabase._init();
 
-  Future<Database> get  database async {
+  Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('post.db');
+    _database = await _initDB('notes.db');
     return _database!;
   }
 
@@ -27,69 +27,71 @@ class PostDatabase {
   Future _createDB(Database db, int version) async {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
+    final boolType = 'BOOLEAN NOT NULL';
+    final integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
-CREATE TABLE $tablePosts(
-  ${PostFields.id} $idType,
-   ${PostFields.Title} $textType,
-   ${PostFields.Description} $textType,
-   ${PostFields.Time} $textType,
-
-)
+CREATE TABLE $tableNotes ( 
+  ${NoteFields.id} $idType, 
+  ${NoteFields.title} $textType,
+  ${NoteFields.description} $textType,
+  ${NoteFields.time} $textType
+  )
 ''');
   }
 
-  Future<Post> create(Post post) async {
+  Future<Note> create(Note note) async {
     final db = await instance.database;
 
-    // final json = post.toJson();
+    // final json = note.toJson();
     // final columns =
-    //     '${PostFields.Title},${PostFields.Description}${PostFields.Time}';
-
+    //     '${NoteFields.title}, ${NoteFields.description}, ${NoteFields.time}';
     // final values =
-    //     '${json[PostFields.Title]},${json[PostFields.Description]}${json[PostFields.Time]}';
-
+    //     '${json[NoteFields.title]}, ${json[NoteFields.description]}, ${json[NoteFields.time]}';
     // final id = await db
     //     .rawInsert('INSERT INTO table_name ($columns) VALUES ($values)');
 
-    final id = await db.insert(tablePosts, post.toJson());
-    return post.copy(id: id);
+    final id = await db.insert(tableNotes, note.toJson());
+    return note.copy(id: id);
   }
 
-  Future<Post> readPost(int id) async {
+  Future<Note> readNote(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
-      tablePosts,
-      columns: PostFields.values,
-      where: '${PostFields.id} = ?',
+      tableNotes,
+      columns: NoteFields.values,
+      where: '${NoteFields.id} = ?',
       whereArgs: [id],
     );
 
     if (maps.isNotEmpty) {
-      return Post.fromJson(maps.first);
+      return Note.fromJson(maps.first);
     } else {
       throw Exception('ID $id not found');
     }
   }
 
-  Future<List<Post>> readAllPost() async {
+  Future<List<Note>> readAllNotes() async {
     final db = await instance.database;
 
-    final orderBy = '${PostFields.Time} ASC';
-    final result = await db.query(tablePosts, orderBy: orderBy);
+    final orderBy = '${NoteFields.time} ASC';
+    // final result =
+    //     await db.rawQuery('SELECT * FROM $tableNotes ORDER BY $orderBy');
 
-    return result.map((json) => Post.fromJson(json)).toList();
+    final result = await db.query(tableNotes, orderBy: orderBy);
+
+    return result.map((json) => Note.fromJson(json)).toList();
   }
 
-  Future<int> update(Post post) async {
+  Future<int> update(Note note) async {
     final db = await instance.database;
 
-    return  await db.update(
-      tablePosts,
-      post.toJson(),
-      where: '${PostFields.id} = ?',
-      whereArgs: [post.id],
+    return db.update(
+      tableNotes,
+      note.toJson(),
+      where: '${NoteFields.id} = ?',
+      whereArgs: [note.id],
     );
   }
 
@@ -97,14 +99,15 @@ CREATE TABLE $tablePosts(
     final db = await instance.database;
 
     return await db.delete(
-      tablePosts,
-      where: '${PostFields.id} = ?',
+      tableNotes,
+      where: '${NoteFields.id} = ?',
       whereArgs: [id],
     );
   }
 
   Future close() async {
     final db = await instance.database;
+
     db.close();
   }
 }
