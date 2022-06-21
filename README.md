@@ -73,13 +73,14 @@ Project is: _in progress_
 
 
 ## Room for Improvement
--Intergration with default secondary sudents api
--Notes Secton
+-
 -
 <!-- Include areas you believe need improvement / could be improved. Also add TODOs for future development. -->
 
 Room for improvement:
 - Adding comment in a post
+- Intergration with default secondary sudents api
+-Notes Secton
 <!-- - Improvement to be done 2 -->
 
 To do:
